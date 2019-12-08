@@ -1,25 +1,31 @@
 var app = SpreadsheetApp;
-var initialSheet = app.getActiveSpreadsheet().getActiveSheet();
-var targetSheet = app.getActiveSpreadsheet().getSheetByName("Таблица для сайта");
+var initialSheet = app.getActiveSpreadsheet().getSheetByName('Точки');
+var targetSheet = app.getActiveSpreadsheet().getSheetByName("Скачать");
+var form = FormApp.openById('1NfHSL2y2U1zkx-pkNH9KSYxF8KzshdOS_bqdDPm3nX4');
 
-// Get response from form and fill in the cells of target sheet
+// Сюда приходит ОДИН ПОСЛЕДНИЙ ответ из формы
 function onSubmit(e){
-  var responses = e.response.getItemResponses();
-  var form = FormApp.openById('1NfHSL2y2U1zkx-pkNH9KSYxF8KzshdOS_bqdDPm3nX4');
-  var currentRow = form.getResponses().length + 1;
+	// Массив ответов на форму
+	var responses = e.response.getItemResponses();
+	// Номер последнего ответа из формы
+	// var currentResponseNumber = form.getResponses().length + 1;
 
-  var nameOfDataset = responses[0].getResponse();
-  targetSheet.getRange(currentRow, 2).setValue(nameOfDataset);
+	Logger.log(responses[0].getResponse(), responses[1].getResponse(), responses[2].getResponse(), responses[3].getResponse())
 
-  var coordinates;
+	var emptyRow = targetSheet.getLastRow() + 1
+	// Название точки на карте
+	var nameOfDataset = responses[0].getResponse()
+	targetSheet.getRange('B' + emptyRow).setValue(nameOfDataset)
 
-  var strLink = "https://drive.google.com/uc?export=download&id=";
-  var linkWithCoordinates = responses[3].getResponse();
-  var pos = linkWithCoordinates.indexOf('=') + 1;
-  strLink += linkWithCoordinates.slice(pos);
-  targetSheet.getRange(currentRow, 4).setValue(strLink);
+	// Ссылка на скачивание папки
+	var strLink = "https://drive.google.com/uc?export=download&id=";
+	var linkWithCoordinates = responses[3].getResponse();
+	var pos = linkWithCoordinates.indexOf('=') + 1;
+	strLink += linkWithCoordinates.slice(pos);
+	targetSheet.getRange('D' + emptyRow).setValue(strLink);
 
-  targetSheet.getRange(currentRow, 1).setValue(currentRow - 1);
+	// Порядковый номер
+	targetSheet.getRange('A' + emptyRow).setValue(emptyRow - 1);
   
 //  createMap();
 }
@@ -27,6 +33,23 @@ function onSubmit(e){
 //function createMap(){
 //  var map = new google.maps.Map()
 //}
+
+// просмотр ВСЕХ ответов формы (https://developers.google.com/apps-script/reference/forms/form-response)
+function getResponsesFromForm() {
+	var form = FormApp.openById('1NfHSL2y2U1zkx-pkNH9KSYxF8KzshdOS_bqdDPm3nX4')
+	var formResponses = form.getResponses();
+	for (var i = 0; i < formResponses.length; i++) {
+		var formResponse = formResponses[i];
+		var itemResponses = formResponse.getItemResponses();
+		for (var j = 0; j < itemResponses.length; j++) {
+			var itemResponse = itemResponses[j];
+			Logger.log('Response #%s to the question "%s" was "%s"',
+			(i + 1).toString(),
+			itemResponse.getItem().getTitle(),
+			itemResponse.getResponse());
+		}
+	}
+}
 
 
 // Add a trigger which listens for form submit
