@@ -26,13 +26,24 @@ function onSubmit(e){
 
 	// Порядковый номер
 	targetSheet.getRange('A' + emptyRow).setValue(emptyRow - 1);
+
+	var coordinatesStr = responses[2].getResponse()
+	var latitude, longtitude
+	latitude = coordinatesStr.slice(0, coordinatesStr.indexOf(','))
+	longtitude = coordinatesStr.slice(coordinatesStr.indexOf(',') + 1)
   
-//  createMap();
+	// createPoint(latitude, longtitude);
 }
 
-//function createMap(){
-//  var map = new google.maps.Map()
-//}
+function createPoint(){
+/*	latitude = 70.38606
+	longtitude = 68.45433*/
+	// var map = new google.maps.Map()
+	// Logger.log(latitude, longtitude)
+	var map = Maps.newStaticMap()
+	map.addMarker(40.741799, -74.004207)
+	var url = map.getMapUrl()
+}
 
 // просмотр ВСЕХ ответов формы (https://developers.google.com/apps-script/reference/forms/form-response)
 function getResponsesFromForm() {
