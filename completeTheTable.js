@@ -1,67 +1,35 @@
-var app = SpreadsheetApp;
-var initialSheet = app.getActiveSpreadsheet().getSheetByName('Точки');
-var targetSheet = app.getActiveSpreadsheet().getSheetByName("Скачать");
-var form = FormApp.openById('1NfHSL2y2U1zkx-pkNH9KSYxF8KzshdOS_bqdDPm3nX4');
+var app = SpreadsheetApp
+var initialSheet = app.getActiveSpreadsheet().getSheetByName('Answers from Form')
+var linkSheet = app.getActiveSpreadsheet().getSheetByName("Links")
+var mapSheet = app.getActiveSpreadsheet().getSheetByName("Map")
+var form = FormApp.openById('1NfHSL2y2U1zkx-pkNH9KSYxF8KzshdOS_bqdDPm3nX4')
 
 // Сюда приходит ОДИН ПОСЛЕДНИЙ ответ из формы
 function onSubmit(e){
 	// Массив ответов на форму
-	var responses = e.response.getItemResponses();
+	var responses = e.response.getItemResponses()
+	Logger.log(responses[0].getResponse(), responses[1].getResponse(), responses[2].getResponse(), responses[3].getResponse())
+
 	// Номер последнего ответа из формы
 	// var currentResponseNumber = form.getResponses().length + 1;
 
-	Logger.log(responses[0].getResponse(), responses[1].getResponse(), responses[2].getResponse(), responses[3].getResponse())
+	// MAP
+	var lastRowMap = linkSheet.getLastRow() + 1
+	var nameOfDataset = responses[0].getResponse().toString()
+	var authors = responses[1].getResponse().toString()
+	var region = responses[2].getResponse().toString()
+	var year = responses[3].getResponse().toString()
+	var description = responses[4].getResponse().toString()
+	var photo = responses[5].getResponse().toString()
+	var address = responses[6].getResponse().toString()
+	var db = responses[7].getResponse().toString()
 
-	var emptyRow = targetSheet.getLastRow() + 1
-	// Название точки на карте
-	var nameOfDataset = responses[0].getResponse()
-	targetSheet.getRange('B' + emptyRow).setValue(nameOfDataset)
-
-	// Ссылка на скачивание папки
-	var strLink = "https://drive.google.com/uc?export=download&id=";
-	var linkWithCoordinates = responses[3].getResponse();
-	var pos = linkWithCoordinates.indexOf('=') + 1;
-	strLink += linkWithCoordinates.slice(pos);
-	targetSheet.getRange('D' + emptyRow).setValue(strLink);
-
-	// Порядковый номер
-	targetSheet.getRange('A' + emptyRow).setValue(emptyRow - 1);
-
-	var coordinatesStr = responses[2].getResponse()
-	var latitude, longtitude
-	latitude = coordinatesStr.slice(0, coordinatesStr.indexOf(','))
-	longtitude = coordinatesStr.slice(coordinatesStr.indexOf(',') + 1)
-  
-	// createPoint(latitude, longtitude);
+	mapSheet.getRange('A' + lastRowMap).setValue(nameOfDataset + ' ' + authors + ' ' + year)
+	mapSheet.getRange('B' + lastRowMap).setValue(region)
+	mapSheet.getRange('C' + lastRowMap).setValue(address)
+	mapSheet.getRange('D' + lastRowMap).setValue(description)
+	mapSheet.getRange('E' + lastRowMap).setValue(photo)
 }
-
-function createPoint(){
-/*	latitude = 70.38606
-	longtitude = 68.45433*/
-	// var map = new google.maps.Map()
-	// Logger.log(latitude, longtitude)
-	var map = Maps.newStaticMap()
-	map.addMarker(40.741799, -74.004207)
-	var url = map.getMapUrl()
-}
-
-// просмотр ВСЕХ ответов формы (https://developers.google.com/apps-script/reference/forms/form-response)
-function getResponsesFromForm() {
-	var form = FormApp.openById('1NfHSL2y2U1zkx-pkNH9KSYxF8KzshdOS_bqdDPm3nX4')
-	var formResponses = form.getResponses();
-	for (var i = 0; i < formResponses.length; i++) {
-		var formResponse = formResponses[i];
-		var itemResponses = formResponse.getItemResponses();
-		for (var j = 0; j < itemResponses.length; j++) {
-			var itemResponse = itemResponses[j];
-			Logger.log('Response #%s to the question "%s" was "%s"',
-			(i + 1).toString(),
-			itemResponse.getItem().getTitle(),
-			itemResponse.getResponse());
-		}
-	}
-}
-
 
 // Add a trigger which listens for form submit
 function addTrigger() {
