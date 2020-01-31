@@ -1,5 +1,3 @@
-var placesSheet = app.getActiveSpreadsheet().getSheetByName("Places");
-
 function fillDownloadLinks() {
 	for (var i = 2; i <= targetSheet.getLastRow(); i++) {
 		var name = targetSheet.getRange(i, 2).getValue()
