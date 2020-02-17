@@ -23,6 +23,7 @@ function completeMapSheet(responses) {
 	var year = responses[3].getResponse().toString()
 	var description = responses[4].getResponse().toString()
 	var photo = responses[5].getResponse().toString()
+	var photoLink = 'https://drive.google.com/open?id=' + photo
 	var address = responses[6].getResponse().toString()
 	var db = responses[7].getResponse().toString()
 	var nameOfDataset = name + ' (' + authors + ', ' + year + ')'
@@ -31,7 +32,7 @@ function completeMapSheet(responses) {
 	mapSheet.getRange('B' + lastRowMap).setValue(region)
 	mapSheet.getRange('C' + lastRowMap).setValue(address)
 	mapSheet.getRange('D' + lastRowMap).setValue(description + ' plots')
-	mapSheet.getRange('E' + lastRowMap).setValue(photo)
+	mapSheet.getRange('E' + lastRowMap).setValue(photoLink)
 }
 
 function completePlaces(responses) {
