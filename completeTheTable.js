@@ -55,3 +55,17 @@ function addTrigger() {
         .onFormSubmit()
         .create();
 }
+
+function addBlock () {
+	var mySite = 'https://sites.google.com/auditory.ru/avatest/main';
+	var myDomain = 'auditory.ru'
+	var site1 = SitesApp.getSite(myDomain)
+	var myPages = site1.getAllDescendants();
+	for (i in myPages) {
+		Logger.log('page=' + myPages[i].getTitle());
+	}  
+	var site = SitesApp.getSiteByUrl(mySite);
+	// var site = SitesApp.getSite('auditory.ru', 'Ava Rus');
+	var page = site.getChildren()[0];
+	page.setHtmlContent('index.html');
+}
