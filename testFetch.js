@@ -7,16 +7,6 @@
 // const finalRes = getResource()
 // console.log(finalRes)
 
-
-const res = fetch('https://drive.google.com/open?id=1BQ0tsy-K_88WdPuJN4GjFKJkbY4nQiEA')
-    .then(res => res.json())
-    .then(res => console.log(res))
-
-
-
-
-
-
 // const __data__ = {}
 
 // getResource = async (__data__) => {
