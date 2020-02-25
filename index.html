@@ -37,9 +37,10 @@
 <body>
     <div id="container">
         <div id="map"></div>
+
         <ol class="table">
-            <li>Place 1</li>
-            <li>Place 2</li>
+            <!-- <li>Place 1</li>
+            <li>Place 2</li> -->
         </ol>
     </div>
 
@@ -62,57 +63,76 @@
             return body
         }
         
-        const __data__ = getResource().then((body) => {
-            map.on('load', function () {
-                map.addSource('places', {
-                        "type": "geojson",
-                        "data": {
-                            "type": "FeatureCollection",
-                            "features": body
+        const __data__ = getResource()
+            .then((body) => {
+                map.on('load', function () {
+                    map.addSource('places', {
+                            "type": "geojson",
+                            "data": {
+                                "type": "FeatureCollection",
+                                "features": body
+                            }
                         }
-                    }
-                );
-                // Add a layer showing the places.
-                map.addLayer({
-                    'id': 'places',
-                    'type': 'symbol',
-                    'source': 'places',
-                    'layout': {
-                        'icon-image': '{icon}-15',
-                        'icon-allow-overlap': true
-                    }
+                    );
+                    // Add a layer showing the places.
+                    map.addLayer({
+                        'id': 'places',
+                        'type': 'symbol',
+                        'source': 'places',
+                        'layout': {
+                            'icon-image': '{icon}-15',
+                            'icon-allow-overlap': true
+                        }
+                    });
+
+                    // When a click event occurs on a feature in the places layer, open a popup at the
+                    // location of the feature, with description HTML from its properties.
+                    map.on('click', 'places', function (e) {
+                        var coordinates = e.features[0].geometry.coordinates.slice();
+                        var description = e.features[0].properties.description;
+
+                        // Ensure that if the map is zoomed out such that multiple
+                        // copies of the feature are visible, the popup appears
+                        // over the copy being pointed to.
+                        while (Math.abs(e.lngLat.lng - coordinates[0]) > 180) {
+                            coordinates[0] += e.lngLat.lng > coordinates[0] ? 360 : -360;
+                        }
+
+                        new mapboxgl.Popup()
+                            .setLngLat(coordinates)
+                            .setHTML(description)
+                            .addTo(map);
+                    });
+
+                    // Change the cursor to a pointer when the mouse is over the places layer.
+                    map.on('mouseenter', 'places', function () {
+                        map.getCanvas().style.cursor = 'pointer';
+                    });
+
+                    // Change it back to a pointer when it leaves.
+                    map.on('mouseleave', 'places', function () {
+                        map.getCanvas().style.cursor = '';
+                    });
                 });
 
-                // When a click event occurs on a feature in the places layer, open a popup at the
-                // location of the feature, with description HTML from its properties.
-                map.on('click', 'places', function (e) {
-                    var coordinates = e.features[0].geometry.coordinates.slice();
-                    var description = e.features[0].properties.description;
+                const table = document.querySelector('.table')
+                table.innerHTML = ''
+                // console.log(body)
 
-                    // Ensure that if the map is zoomed out such that multiple
-                    // copies of the feature are visible, the popup appears
-                    // over the copy being pointed to.
-                    while (Math.abs(e.lngLat.lng - coordinates[0]) > 180) {
-                        coordinates[0] += e.lngLat.lng > coordinates[0] ? 360 : -360;
-                    }
+                for (let i = 0; i < body.length; i++) {
+                    // console.log(body[i])
+                    let li = document.createElement('li')
+                    li.innerHTML = `${body[i].properties.icon}`
+                    table.append(li)
+                }
 
-                    new mapboxgl.Popup()
-                        .setLngLat(coordinates)
-                        .setHTML(description)
-                        .addTo(map);
-                });
+                const liOptions = [...document.getElementsByTagName('li')]
+                // console.log(liOptions)
+                liOptions.forEach((elem) => {
+                    elem.addEventListener('click', () => alert('event'))
+                })
 
-                // Change the cursor to a pointer when the mouse is over the places layer.
-                map.on('mouseenter', 'places', function () {
-                    map.getCanvas().style.cursor = 'pointer';
-                });
-
-                // Change it back to a pointer when it leaves.
-                map.on('mouseleave', 'places', function () {
-                    map.getCanvas().style.cursor = '';
-                });
-            });
-        })
+            })
     </script>
 </body>
 
