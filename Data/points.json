@@ -2,71 +2,45 @@
     {
         "type": "Feature",
         "properties": {
-<<<<<<< HEAD
             "description": "<h2>Neyto lake (N. Koroleva, V. Zemlyanskiy, 2017)</h2><p>154 plots</p>",
             "title": "Neyto lake (N. Koroleva, V. Zemlyanskiy, 2017)",
             "photo": "",
             "icon": "theatre",
             "marker-symbol": "rail-metro"
-=======
-            "description": "<h2>Neyto lake (N. Koroleva, V. Zemlyanskiy, 2017)</h2><p>154 plots</p><img src='https://drive.google.com/open?id=1OgyBlNwg9-xTJkyTS8dQqXHF4Y5f6VY0' style='width: 40px;'>",
-            "title": "Neyto lake (N. Koroleva, V. Zemlyanskiy, 2017)",
-            "url": "https://pbs.twimg.com/profile_images/1045580248467886080/_uwwJdr3_400x400.jpg",
-            "icon": "theatre"
-            
->>>>>>> f8e2408df8dd5eafdcd66d01b689617df4c3a42f
         },
         "geometry": {
             "type": "Point",
             "coordinates": [
-<<<<<<< HEAD
                 70.20466,
                 70.82071
-=======
-                70.20466, 70.82071
->>>>>>> f8e2408df8dd5eafdcd66d01b689617df4c3a42f
             ]
         }
     },
     {
         "type": "Feature",
         "properties": {
-<<<<<<< HEAD
             "title": "Malozemelskaya Tundra (Lavrinenko O.&I., 2001-2007)",
             "description": "<h2>Malozemelskaya Tundra (Lavrinenko O.&I., 2001-2007)</h2><p>99 plots</p><iframe src='https://drive.google.com/file/d/157jDTAfjloZjy3SN_AGIUiKjb7m7gYRY/preview' width='100%'></iframe><iframe src='https://drive.google.com/file/d/1MIqB6I5ZqKKUGQhVGv_gTjCcH21eeejl/preview' width='100%'></iframe>",
-=======
-            "title": "title3",
-            "description": "<h2>Malozemelskaya Tundra (Lavrinenko O.&I., 2001-2007)</h2><p>99 plots</p><img src='https://drive.google.com/open?id=1OgyBlNwg9-xTJkyTS8dQqXHF4Y5f6VY0' style='width: 40px;'>",
->>>>>>> f8e2408df8dd5eafdcd66d01b689617df4c3a42f
             "icon": "bar"
         },
         "geometry": {
             "type": "Point",
             "coordinates": [
-<<<<<<< HEAD
                 68.82083,
                 54.25638
-=======
-                68.82083, 54.25638
->>>>>>> f8e2408df8dd5eafdcd66d01b689617df4c3a42f
             ]
         }
     },
     {
         "type": "Feature",
         "properties": {
-<<<<<<< HEAD
             "title": "Nakhodka bay (N. Koroleva, V. Zemlyanskiy, 2017)",
             "description": "<h2>Nakhodka bay (N. Koroleva, V. Zemlyanskiy, 2017)</h2><p>151 plots</p><iframe src='https://drive.google.com/file/d/157jDTAfjloZjy3SN_AGIUiKjb7m7gYRY/preview' width='100%'></iframe>",
-=======
-            "description": "<h2>Nakhodka bay (N. Koroleva, V. Zemlyanskiy, 2017)</h2><p>151 plots</p><img src='https://drive.google.com/file/d/1ZEhpKeRPkF8ZtvSCEnIj5pW3hKg3NUQX/view?usp=sharing'>",
->>>>>>> f8e2408df8dd5eafdcd66d01b689617df4c3a42f
             "icon": "art-gallery"
         },
         "geometry": {
             "type": "Point",
             "coordinates": [
-<<<<<<< HEAD
                 67.381,
                 72.082
             ]
@@ -99,9 +73,6 @@
             "coordinates": [
                 67.46358,
                 51.824
-=======
-                67.381, 72.082
->>>>>>> f8e2408df8dd5eafdcd66d01b689617df4c3a42f
             ]
         }
     }
