@@ -31,6 +31,14 @@
             max-width: 400px;
             font: 12px/20px 'Helvetica Neue', Arial, Helvetica, sans-serif;
         }
+
+        li {
+            padding: 1rem 0;
+        }
+
+        li:hover {
+            background: lightgrey;
+        }
     </style>
 </head>
 
@@ -51,8 +59,8 @@
         var map = new mapboxgl.Map({
             container: 'map',
             style: 'mapbox://styles/mapbox/streets-v11',
-            center: [-77.04, 38.907],
-            zoom: 11.15
+            center: [68.43693, 68.04951],
+            zoom: 3
         });
 
 
@@ -122,14 +130,14 @@
                 for (let i = 0; i < body.length; i++) {
                     // console.log(body[i])
                     let li = document.createElement('li')
-                    li.innerHTML = `${body[i].properties.icon}`
+                    li.innerHTML = `${body[i].properties.title}`
                     table.append(li)
                 }
 
                 const liOptions = [...document.getElementsByTagName('li')]
                 // console.log(liOptions)
                 liOptions.forEach((elem) => {
-                    elem.addEventListener('click', () => alert('event'))
+                    elem.addEventListener('click', () => alert(elem.innerHTML))
                 })
 
             })
