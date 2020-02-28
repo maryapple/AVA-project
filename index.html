@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="utf-8" />
-    <title>test</title>
+    <title>Ava Test</title>
     <meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no" />
     <script src="https://api.mapbox.com/mapbox-gl-js/v1.7.0/mapbox-gl.js"></script>
     <link href="https://api.mapbox.com/mapbox-gl-js/v1.7.0/mapbox-gl.css" rel="stylesheet" />
@@ -47,8 +47,6 @@
         <div id="map"></div>
 
         <ol class="table">
-            <!-- <li>Place 1</li>
-            <li>Place 2</li> -->
         </ol>
     </div>
 
@@ -59,7 +57,11 @@
         var map = new mapboxgl.Map({
             container: 'map',
             style: 'mapbox://styles/mapbox/streets-v11',
+<<<<<<< HEAD
             center: [68.43693, 68.04951],
+=======
+            center: [69.36194, 70.63524],
+>>>>>>> f8e2408df8dd5eafdcd66d01b689617df4c3a42f
             zoom: 3
         });
 
@@ -70,6 +72,9 @@
             const body = res.json()
             return body
         }
+
+        const table = document.querySelector('.table')
+        table.innerHTML = ''
         
         const __data__ = getResource()
             .then((body) => {
@@ -96,6 +101,8 @@
                     // When a click event occurs on a feature in the places layer, open a popup at the
                     // location of the feature, with description HTML from its properties.
                     map.on('click', 'places', function (e) {
+                        console.log(e.features[0])
+                        
                         var coordinates = e.features[0].geometry.coordinates.slice();
                         var description = e.features[0].properties.description;
 
@@ -123,8 +130,7 @@
                     });
                 });
 
-                const table = document.querySelector('.table')
-                table.innerHTML = ''
+                
                 // console.log(body)
 
                 for (let i = 0; i < body.length; i++) {
@@ -137,7 +143,13 @@
                 const liOptions = [...document.getElementsByTagName('li')]
                 // console.log(liOptions)
                 liOptions.forEach((elem) => {
+<<<<<<< HEAD
                     elem.addEventListener('click', () => alert(elem.innerHTML))
+=======
+                    elem.addEventListener('click', (e) => {
+                        alert('event')
+                    })
+>>>>>>> f8e2408df8dd5eafdcd66d01b689617df4c3a42f
                 })
 
             })
