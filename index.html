@@ -57,8 +57,8 @@
         var map = new mapboxgl.Map({
             container: 'map',
             style: 'mapbox://styles/mapbox/streets-v11',
-            center: [68.43693, 68.04951],
-            zoom: 3
+            center: [63.47462, 69.89406],
+            zoom: 5
         });
 
 
@@ -71,6 +71,8 @@
 
         const table = document.querySelector('.table')
         table.innerHTML = ''
+
+        let arrayOfData = []
         
         const __data__ = getResource()
             .then((body) => {
@@ -97,7 +99,7 @@
                     // When a click event occurs on a feature in the places layer, open a popup at the
                     // location of the feature, with description HTML from its properties.
                     map.on('click', 'places', function (e) {
-                        console.log(e.features[0])
+                        // console.log(e.features[0])
                         
                         var coordinates = e.features[0].geometry.coordinates.slice();
                         var description = e.features[0].properties.description;
@@ -136,10 +138,33 @@
                     table.append(li)
                 }
 
+                arrayOfData = body
+
                 const liOptions = [...document.getElementsByTagName('li')]
                 // console.log(liOptions)
                 liOptions.forEach((elem) => {
-                    elem.addEventListener('click', () => alert(elem.innerHTML))
+                    elem.addEventListener('click', () => {
+                        // alert(elem.innerHTML)
+                        const txt = elem.innerHTML
+                        for (let i = 0; i < arrayOfData.length; i++) {
+                            if (txt === arrayOfData[i].properties.title) {
+                                // var coordinates = e.features[0].geometry.coordinates.slice();
+                                // var description = e.features[0].properties.description;
+
+                                // Ensure that if the map is zoomed out such that multiple
+                                // copies of the feature are visible, the popup appears
+                                // over the copy being pointed to.
+                                // while (Math.abs(e.lngLat.lng - coordinates[0]) > 180) {
+                                //     coordinates[0] += e.lngLat.lng > coordinates[0] ? 360 : -360;
+                                // }
+
+                                new mapboxgl.Popup()
+                                    .setLngLat(arrayOfData[i].geometry.coordinates)
+                                    .setHTML(arrayOfData[i].properties.description)
+                                    .addTo(map);
+                            }
+                        }
+                    })
                 })
 
             })

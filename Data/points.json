@@ -5,14 +5,13 @@
             "description": "<h2>Neyto lake (N. Koroleva, V. Zemlyanskiy, 2017)</h2><p>154 plots</p>",
             "title": "Neyto lake (N. Koroleva, V. Zemlyanskiy, 2017)",
             "photo": "",
-            "icon": "theatre",
-            "marker-symbol": "rail-metro"
+            "icon": "theatre"
         },
         "geometry": {
             "type": "Point",
             "coordinates": [
-                70.20466,
-                70.82071
+                70.82071,
+                70.20466
             ]
         }
     },
@@ -26,8 +25,8 @@
         "geometry": {
             "type": "Point",
             "coordinates": [
-                68.82083,
-                54.25638
+                54.25638,
+                68.82083
             ]
         }
     },
@@ -41,8 +40,8 @@
         "geometry": {
             "type": "Point",
             "coordinates": [
-                67.381,
-                72.082
+                72.082,
+                67.381
             ]
         }
     },
@@ -56,8 +55,8 @@
         "geometry": {
             "type": "Point",
             "coordinates": [
-                72.66175,
-                72.94169
+                72.94169,
+                72.66175
             ]
         }
     },
@@ -71,8 +70,8 @@
         "geometry": {
             "type": "Point",
             "coordinates": [
-                67.46358,
-                51.824
+                51.824,
+                67.46358
             ]
         }
     }
