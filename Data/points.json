@@ -63,7 +63,7 @@
         "type": "Feature",
         "properties": {
             "title": "Dedov dataset (Dedov, 1928-1939)",
-            "description": "<p style='font-weight: 600; font-size: 0.9rem;'>Dedov dataset (Dedov, 1928-1939)</p><p>189 1st quality plots and 21 2st quality plots</p><img src='https://upload.wikimedia.org/wikipedia/ru/0/06/Дедов_Андрей_Алексеевич.jpg'>",
+            "description": "<p style='font-weight: 600; font-size: 0.9rem;'>Dedov dataset (Dedov, 1928-1939)</p><p>189 1st quality plots and 21 2st quality plots</p><img src='https://upload.wikimedia.org/wikipedia/ru/0/06/Дедов_Андрей_Алексеевич.jpg' style='width: 100%'>",
             "icon": "harbor"
         },
         "geometry": {

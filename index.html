@@ -30,7 +30,7 @@
         }
 
         .mapboxgl-popup {
-            max-width: 400px;
+            width: 200px;
             font: 12px/20px 'Helvetica Neue', Arial, Helvetica, sans-serif;
         }
 
@@ -66,8 +66,6 @@
 
         const listOfPoints = document.querySelector('.listOfPoints')
         listOfPoints.innerHTML = ''
-
-        let arrayOfData = []
         
         const __data__ = getResource()
             .then((body) => {
@@ -123,39 +121,49 @@
                     });
                 });
 
-                
-                // console.log(body)
-
+                // Create a list with titles from api
                 for (let i = 0; i < body.length; i++) {
-                    // console.log(body[i])
                     let li = document.createElement('li')
                     li.innerHTML = `${body[i].properties.title}`
                     listOfPoints.append(li)
                 }
 
-                arrayOfData = body
-
+                // Click handler. Open a popup
                 const liOptions = [...document.getElementsByTagName('li')]
-                // console.log(liOptions)
+                let lastClickedTitle = ''
+                let firstClick = false
+                var popup
+                let clicksInOnePoint = 0
                 liOptions.forEach((elem) => {
                     elem.addEventListener('click', () => {
-                        const txt = elem.innerHTML
-                        for (let i = 0; i < arrayOfData.length; i++) {
-                            if (txt === arrayOfData[i].properties.title) {
-                                // var coordinates = e.features[0].geometry.coordinates.slice();
-                                // var description = e.features[0].properties.description;
+                        const currentTitle = elem.innerHTML
+                        for (let i = 0; i < body.length; i++) {
+                            if (currentTitle === body[i].properties.title) {
+                                if (firstClick === false) {
+                                    lastClickedTitle = currentTitle
+                                    firstClick = true
+                                }
 
-                                // Ensure that if the map is zoomed out such that multiple
-                                // copies of the feature are visible, the popup appears
-                                // over the copy being pointed to.
-                                // while (Math.abs(e.lngLat.lng - coordinates[0]) > 180) {
-                                //     coordinates[0] += e.lngLat.lng > coordinates[0] ? 360 : -360;
-                                // }
+                                if (lastClickedTitle !== currentTitle) {
+                                    popup.remove()
+                                    clicksInOnePoint = 0
+                                }
+                                clicksInOnePoint ++
 
-                                new mapboxgl.Popup()
-                                    .setLngLat(arrayOfData[i].geometry.coordinates)
-                                    .setHTML(arrayOfData[i].properties.description)
-                                    .addTo(map);
+                                if (clicksInOnePoint === 1) {
+                                    var coordinates = body[i].geometry.coordinates
+                                    var description = body[i].properties.description
+                                    
+                                    // открыть окно
+                                    popup = new mapboxgl.Popup()
+                                        .setLngLat(coordinates)
+                                        .setHTML(description)
+                                        .addTo(map);
+                                    
+                                    lastClickedTitle = currentTitle
+                                }
+                                
+                                
                             }
                         }
                     })
