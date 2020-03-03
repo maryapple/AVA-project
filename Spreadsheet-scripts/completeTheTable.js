@@ -57,7 +57,7 @@ function addTrigger() {
         .create();
 }
 
-function addBlock () {
+/* function addBlock () {
 	var mySite = 'https://sites.google.com/auditory.ru/avatest/main';
 	var myDomain = 'auditory.ru'
 	var site1 = SitesApp.getSite(myDomain)
@@ -68,5 +68,8 @@ function addBlock () {
 	var site = SitesApp.getSiteByUrl(mySite);
 	// var site = SitesApp.getSite('auditory.ru', 'Ava Rus');
 	var page = site.getChildren()[0];
+
+	var sitesByD = SitesApp.getSites('auditory.ru');
+	Logger.log(sitesByD)
 	page.setHtmlContent('index.html');
-}
+} */
