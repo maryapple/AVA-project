@@ -4,8 +4,14 @@
         "properties": {
             "description": "<p style='font-weight: 600; font-size: 0.9rem;'>Neyto lake (N. Koroleva, V. Zemlyanskiy, 2017)</p><p>154 plots</p>",
             "title": "Neyto lake (N. Koroleva, V. Zemlyanskiy, 2017)",
+            "icon": "theatre",
             "photo": "",
-            "icon": "theatre"
+            "coordinates": "",
+            "region": "",
+            "authors": "",
+            "year": "",
+            "amount of plots": 0,
+            "link to database": ""
         },
         "geometry": {
             "type": "Point",
@@ -20,7 +26,14 @@
         "properties": {
             "title": "Malozemelskaya Tundra (Lavrinenko O. and I., 2001-2007)",
             "description": "<p style='font-weight: 600; font-size: 0.9rem;'>Malozemelskaya Tundra (Lavrinenko O. and I., 2001-2007)</p><p>99 plots</p><iframe src='https://drive.google.com/file/d/157jDTAfjloZjy3SN_AGIUiKjb7m7gYRY/preview' width='100%'></iframe><iframe src='https://drive.google.com/file/d/1MIqB6I5ZqKKUGQhVGv_gTjCcH21eeejl/preview' width='100%'></iframe>",
-            "icon": "bar"
+            "icon": "bar",
+            "photo": "",
+            "coordinates": "",
+            "region": "",
+            "authors": "",
+            "year": "",
+            "amount of plots": 0,
+            "link to database": ""
         },
         "geometry": {
             "type": "Point",
@@ -34,7 +47,14 @@
         "properties": {
             "title": "Nakhodka bay (N. Koroleva, V. Zemlyanskiy, 2017)",
             "description": "<p style='font-weight: 600; font-size: 0.9rem;'>Nakhodka bay (N. Koroleva, V. Zemlyanskiy, 2017)</p><p>151 plots</p><iframe src='https://drive.google.com/file/d/157jDTAfjloZjy3SN_AGIUiKjb7m7gYRY/preview' width='100%'></iframe>",
-            "icon": "art-gallery"
+            "icon": "art-gallery",
+            "photo": "",
+            "coordinates": "",
+            "region": "",
+            "authors": "",
+            "year": "",
+            "amount of plots": 0,
+            "link to database": ""
         },
         "geometry": {
             "type": "Point",
@@ -49,7 +69,14 @@
         "properties": {
             "title": "Obskaya Bay (K. Ermokhina, 2012)",
             "description": "<p style='font-weight: 600; font-size: 0.9rem;'>Obskaya Bay (K. Ermokhina, 2012)</p><p>6 plots</p><iframe src='https://drive.google.com/file/d/1ABTr3NHI3CtJhfU1BUsRF0W3xxoMlwMg/preview' width='100%'></iframe>",
-            "icon": "monument"
+            "icon": "monument",
+            "photo": "",
+            "coordinates": "",
+            "region": "",
+            "authors": "",
+            "year": "",
+            "amount of plots": 0,
+            "link to database": ""
         },
         "geometry": {
             "type": "Point",
@@ -64,7 +91,14 @@
         "properties": {
             "title": "Dedov dataset (Dedov, 1928-1939)",
             "description": "<p style='font-weight: 600; font-size: 0.9rem;'>Dedov dataset (Dedov, 1928-1939)</p><p>189 1st quality plots and 21 2st quality plots</p><img src='https://upload.wikimedia.org/wikipedia/ru/0/06/Дедов_Андрей_Алексеевич.jpg' style='width: 100%'>",
-            "icon": "harbor"
+            "icon": "harbor",
+            "photo": "",
+            "coordinates": "",
+            "region": "",
+            "authors": "",
+            "year": "",
+            "amount of plots": 0,
+            "link to database": ""
         },
         "geometry": {
             "type": "Point",

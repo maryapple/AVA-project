@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test page</title>
+</head>
+<body>
+    <h1>Console</h1>
+    <script>
+        const getResource = async () => {
+            const res = await fetch('https://spreadsheets.google.com/feeds/cells/155ReFwV5EfsIzYBk8EkkGhPbTH90jXIvGiMQBynzErY/1/public/full?alt=json')
+            const body = res.json()
+            return body
+        }
+
+        const __data__ = getResource()
+            .then((body) => { console.log(body.feed.entry[0].content.$t) } )
+    </script>
+</body>
+</html>
