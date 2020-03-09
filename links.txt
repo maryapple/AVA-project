@@ -6,5 +6,5 @@ https://docs.google.com/spreadsheets/d/155ReFwV5EfsIzYBk8EkkGhPbTH90jXIvGiMQBynz
 https://spreadsheets.google.com/feeds/cells/155ReFwV5EfsIzYBk8EkkGhPbTH90jXIvGiMQBynzErY/1/public/full?alt=json
 
 ---------------------------------------------------
-https://docs.google.com/spreadsheets/d/19zWBlt4Ck4t05HeGZRghWuHwDAUMteXl2GOWJj0aMwQ/edit#gid=2115766945
-https://spreadsheets.google.com/feeds/cells/19zWBlt4Ck4t05HeGZRghWuHwDAUMteXl2GOWJj0aMwQ/4/public/full?alt=json
+Link to Sheet with main info
+https://spreadsheets.google.com/feeds/cells/19zWBlt4Ck4t05HeGZRghWuHwDAUMteXl2GOWJj0aMwQ/2/public/full?alt=json

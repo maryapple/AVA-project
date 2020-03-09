@@ -25,6 +25,11 @@
             width: 75%;
         }
 
+        ul {
+            height: 100vh;
+            overflow: scroll;
+        }
+
         .listOfPoints {
             width: 25%;
             padding-left: 1rem;
@@ -59,8 +64,9 @@
 
 
         const getResource = async () => {
-            const res = await fetch('https://5e4d1a629b6805001438f615.mockapi.io/ava/api/v1/points')
+            // const res = await fetch('https://5e4d1a629b6805001438f615.mockapi.io/ava/api/v1/points')
             // const res = await fetch('https://api.myjson.com/bins/17undk')
+            const res = await fetch('https://spreadsheets.google.com/feeds/cells/19zWBlt4Ck4t05HeGZRghWuHwDAUMteXl2GOWJj0aMwQ/2/public/full?alt=json')
             const body = res.json()
             return body
         }
@@ -70,12 +76,45 @@
         
         const __data__ = getResource()
             .then((body) => {
+                body = body.feed.entry
+                // amount of strings in the table
+                let amountOfObjects = body.length / 10 - 1
+                let data = []
+
+                for (let i = 0; i < amountOfObjects; i++) {
+                    let long = parseFloat(`${body[i * 10 + 13].content.$t}`.slice(0, `${body[i * 10 + 13].content.$t}`.indexOf(',')))
+                    let lat = parseFloat(`${body[i * 10 + 13].content.$t}`.slice(`${body[i * 10 + 13].content.$t}`.indexOf(',') + 1))
+
+                    let arrOfCoor = [long, lat]
+                    let obj = {
+                        "type": "Feature",
+                        "properties": {
+                            "description": `<p style='font-weight: 600; font-size: 0.9rem;'>${body[i * 10 + 10].content.$t}</p><p>${body[i * 10 + 11].content.$t}</p>`,
+                            "title": `${body[i * 10 + 10].content.$t}`,
+                            "icon": "theatre",
+                            "photo": "",
+                            "coordinates": `${body[i * 10 + 13].content.$t}`,
+                            "region": "",
+                            "authors": "",
+                            "year": "",
+                            "amount of plots": 0,
+                            "link to database": ""
+                        },
+                        "geometry": {
+                            "type": "Point",
+                            "coordinates": arrOfCoor
+                        }
+                    }
+                    data.push(obj)
+                }
+
+                // console.log(data)
                 map.on('load', function () {
                     map.addSource('places', {
                             "type": "geojson",
                             "data": {
                                 "type": "FeatureCollection",
-                                "features": body
+                                "features": data
                             }
                         }
                     );
@@ -123,9 +162,9 @@
                 });
 
                 // Create a list with titles from api
-                for (let i = 0; i < body.length; i++) {
+                for (let i = 0; i < data.length; i++) {
                     let li = document.createElement('li')
-                    li.innerHTML = `${body[i].properties.title}`
+                    li.innerHTML = `${data[i].properties.title}`
                     listOfPoints.append(li)
                 }
 
@@ -138,8 +177,8 @@
                 liOptions.forEach((elem) => {
                     elem.addEventListener('click', () => {
                         const currentTitle = elem.innerHTML
-                        for (let i = 0; i < body.length; i++) {
-                            if (currentTitle === body[i].properties.title) {
+                        for (let i = 0; i < data.length; i++) {
+                            if (currentTitle === data[i].properties.title) {
                                 if (firstClick === false) {
                                     lastClickedTitle = currentTitle
                                     firstClick = true
@@ -152,8 +191,8 @@
                                 clicksInOnePoint ++
 
                                 if (clicksInOnePoint === 1) {
-                                    var coordinates = body[i].geometry.coordinates
-                                    var description = body[i].properties.description
+                                    var coordinates = data[i].geometry.coordinates
+                                    var description = data[i].properties.description
                                     
                                     // открыть окно
                                     popup = new mapboxgl.Popup()
