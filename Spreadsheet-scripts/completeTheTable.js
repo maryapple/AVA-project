@@ -33,11 +33,20 @@ function sendResponse(responses) {
 	var coordinates = responses[6].getResponse().toString()
 	var dbLink = responses[7].getResponse().toString()
 	var title = name + ' (' + authors + ', ' + year + ')'
-	var description = `<p>` + plots + `</p><iframe src='https://drive.google.com/file/d/` 
-		+ photoId + `/preview' width='100%'></iframe>`
+	
 
 	var lastRowMap = mapSheet.getLastRow() + 1
 	mapSheet.getRange('A' + lastRowMap).setValue(title)
+	// if (photoId.indexOf(',' !== -1)) {
+	// 	let amountOfPhoto = ("str1,str2,str3,str4".match(/,/g) || []).length
+	// 		photoId.split(/[^,]+/)
+	// }
+	mapSheet.getRange('I' + lastRowMap).setValue(photoId)
+	
+	// var description = `<p style='font-weight: 600; font-size: 0.9rem;'>${title}</p><p>` + plots + `</p><iframe src='https://drive.google.com/file/d/` 
+	// 	+ photoId + `/preview' width='100%'></iframe><a href="https://sites.google.com/auditory.ru/avarus/main/` + name.replace(/\s/g, '').toLowerCase() + `">Go to page</a>`
+	var description = `<p>` + plots + `</p><iframe src='https://drive.google.com/file/d/` 
+		+ photoId + `/preview' width='100%'></iframe><a href="https://sites.google.com/auditory.ru/avarus/main/` + name.replace(/\s/g, '').toLowerCase() + `">Go to page</a>`
 	mapSheet.getRange('B' + lastRowMap).setValue(description)
 	mapSheet.getRange('C' + lastRowMap).setValue(name)
 	mapSheet.getRange('D' + lastRowMap).setValue(coordinates)
@@ -46,9 +55,21 @@ function sendResponse(responses) {
 	mapSheet.getRange('G' + lastRowMap).setValue(year)
 	mapSheet.getRange('H' + lastRowMap).setValue(plots)
 	// где хранится фото? права доступа?
-	mapSheet.getRange('I' + lastRowMap).setValue(photoId)
+	
 	// не на скачивание?
 	mapSheet.getRange('J' + lastRowMap).setValue(dbLink)
+}
+
+function completeIncorrect() {
+	var lastRowMap = mapSheet.getLastRow() + 1
+	for (let i = 2; i <= lastRowMap; i++) {
+		var name = mapSheet.getRange('C' + i).getValue()
+		var plots = mapSheet.getRange('H' + i).getValue()
+		var photoId = mapSheet.getRange('I' + i).getValue()
+		var description = `<p>` + plots + `</p><iframe src='https://drive.google.com/file/d/` 
+		+ photoId + `/preview' width='100%'></iframe><a href="https://sites.google.com/auditory.ru/avarus/main/` + name.replace(/\s/g, '').toLowerCase() + `">Go to page</a>`
+		mapSheet.getRange('B' + i).setValue(description)
+	}
 }
 
 // function completePlaces(responses) {

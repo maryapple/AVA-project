@@ -89,7 +89,7 @@
                     let obj = {
                         "type": "Feature",
                         "properties": {
-                            "description": `<p style='font-weight: 600; font-size: 0.9rem;'>${body[i * 10 + 10].content.$t}</p><p>${body[i * 10 + 11].content.$t}</p>`,
+                            "description": `<p style='font-weight: 600; font-size: 0.9rem;'>${body[i * 10 + 10].content.$t}</p>${body[i * 10 + 11].content.$t}`,
                             "title": `${body[i * 10 + 10].content.$t}`,
                             "icon": "theatre",
                             "photo": "",
