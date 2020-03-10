@@ -38,8 +38,6 @@ function sendResponse(responses) {
 	var description = `<p>` + plots + `</p>`
 	// Если несколько айдишников фото
 	if (photoId.indexOf(',' !== -1)) {
-		// let amountOfPhoto = ("str1,str2,str3,str4".match(/,/g) || []).length
-		// console.log(photoId)
 		let arrayOfIds = photoId.split(/[\^,]/)
 		for (let i = 0; i < arrayOfIds.length; i++) {
 			description += `<iframe src='https://drive.google.com/file/d/` + arrayOfIds[i] + `/preview' width='100%'></iframe>`
