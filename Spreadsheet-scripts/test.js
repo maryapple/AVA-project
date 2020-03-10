@@ -69,3 +69,17 @@ function ex() {
 	Logger.log(sitesByD)
 	page.setHtmlContent('index.html');
 } */
+
+// function completePlaces(responses) {
+// 	var lastRowMPlaces = placesSheet.getLastRow() + 1
+// 	var name = responses[0].getResponse().toString()
+// 	var authors = responses[2].getResponse().toString()
+// 	var year = responses[3].getResponse().toString()
+// 	var nameOfDataset = name + ' (' + authors + ', ' + year + ')'
+
+// 	var nameToLink = name.toLowerCase()
+// 	nameToLink = nameToLink.replace(/\s+/g,'')
+// 	var hyperLink = '=hyperlink("https://sites.google.com/auditory.ru/avarus/main/' + nameToLink + '"; "' + nameOfDataset + '")'
+
+// 	placesSheet.getRange('A' + lastRowMPlaces).setValue(hyperLink)
+// }

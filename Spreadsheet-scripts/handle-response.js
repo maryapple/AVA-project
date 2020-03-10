@@ -19,11 +19,10 @@ function onSubmit(e){
 	var responses = e.response.getItemResponses()
 	// Logger.log(responses[0].getResponse(), responses[1].getResponse(), responses[2].getResponse(), responses[3].getResponse())
 
-	sendResponse(responses)
-	// completePlaces(responses)
+	handleResponse(responses)
 }
 
-function sendResponse(responses) {
+function handleResponse(responses) {
 	var name = responses[0].getResponse().toString()
 	var region = responses[1].getResponse().toString()
 	var authors = responses[2].getResponse().toString()
@@ -58,34 +57,9 @@ function sendResponse(responses) {
 	mapSheet.getRange('F' + lastRowMap).setValue(authors)
 	mapSheet.getRange('G' + lastRowMap).setValue(year)
 	mapSheet.getRange('H' + lastRowMap).setValue(plots)
-	// где хранится фото? права доступа?
+	// фото сохраняется в корневую папку. права доступа?
 	mapSheet.getRange('I' + lastRowMap).setValue(photoId)
-	// не на скачивание?
+	// ссылка просто на датасет (НЕ на скачивание)
 	mapSheet.getRange('J' + lastRowMap).setValue(dbLink)
+	makeDownloadLinks(mapSheet)
 }
-
-function completeIncorrect() {
-	var lastRowMap = mapSheet.getLastRow() + 1
-	for (let i = 2; i <= lastRowMap; i++) {
-		var name = mapSheet.getRange('C' + i).getValue()
-		var plots = mapSheet.getRange('H' + i).getValue()
-		var photoId = mapSheet.getRange('I' + i).getValue()
-		var description = `<p>` + plots + `</p><iframe src='https://drive.google.com/file/d/` 
-		+ photoId + `/preview' width='100%'></iframe><a href="https://sites.google.com/auditory.ru/avarus/main/` + name.replace(/\s/g, '').toLowerCase() + `">Go to page</a>`
-		mapSheet.getRange('B' + i).setValue(description)
-	}
-}
-
-// function completePlaces(responses) {
-// 	var lastRowMPlaces = placesSheet.getLastRow() + 1
-// 	var name = responses[0].getResponse().toString()
-// 	var authors = responses[2].getResponse().toString()
-// 	var year = responses[3].getResponse().toString()
-// 	var nameOfDataset = name + ' (' + authors + ', ' + year + ')'
-
-// 	var nameToLink = name.toLowerCase()
-// 	nameToLink = nameToLink.replace(/\s+/g,'')
-// 	var hyperLink = '=hyperlink("https://sites.google.com/auditory.ru/avarus/main/' + nameToLink + '"; "' + nameOfDataset + '")'
-
-// 	placesSheet.getRange('A' + lastRowMPlaces).setValue(hyperLink)
-// }
