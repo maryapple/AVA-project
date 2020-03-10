@@ -15,7 +15,18 @@
         }
 
         const __data__ = getResource()
-            .then((body) => { console.log(body.feed.entry[0].content.$t) } )
+            // .then((body) => { console.log(body.feed.entry[0].content.$t) } )
+
+        photoId = '1DPodKIAn2dk7Um-_T6Lc7slnnB11EY99,1SJbYehGDHgNa6KtIqn39QWlKL7uY1wnP'
+        if (photoId.indexOf(',' !== -1)) {
+            // let amountOfPhoto = ("str1,str2,str3,str4".match(/,/g) || []).length
+            // console.log(photoId)
+            let arrayOfIds = photoId.split(/[\^,]/)
+            for (let i = 0; i < arrayOfIds.length; i++) {
+                
+            }
+            // console.log(splits)
+        }
     </script>
 </body>
 </html>
