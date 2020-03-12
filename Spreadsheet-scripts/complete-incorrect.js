@@ -5,8 +5,18 @@ function completeIncorrectDescription() {
 		var name = mapSheet.getRange('C' + i).getValue()
 		var plots = mapSheet.getRange('H' + i).getValue()
 		var photoId = mapSheet.getRange('I' + i).getValue()
-		var description = `<p>` + plots + `</p><iframe src='https://drive.google.com/file/d/` 
-		+ photoId + `/preview' width='100%'></iframe><a href="https://sites.google.com/auditory.ru/avarus/main/` + name.replace(/\s/g, '').toLowerCase() + `">Go to page</a>`
+		var description = `<p>` + plots + `</p>`
+		if (photoId.indexOf(',' !== -1)) {
+			let arrayOfIds = photoId.split(/[\^,]/)
+			for (let i = 0; i < arrayOfIds.length; i++) {
+				description += `<iframe src='https://drive.google.com/file/d/` + arrayOfIds[i] + `/preview' width='100%'></iframe>`
+			}
+			description += `<a href="https://sites.google.com/auditory.ru/avarus/main/` + name.replace(/\s/g, '').toLowerCase() + `">Go to page</a>`
+		}
+		else {
+			description = `<p>` + plots + `</p><iframe src='https://drive.google.com/file/d/` 
+			+ photoId + `/preview' width='100%'></iframe><a href="https://sites.google.com/auditory.ru/avarus/main/` + name.replace(/\s/g, '').toLowerCase() + `">Go to page</a>`
+		}
 		mapSheet.getRange('B' + i).setValue(description)
 	}
 }
