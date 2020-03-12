@@ -8,7 +8,6 @@
     <script src="https://api.mapbox.com/mapbox-gl-js/v1.7.0/mapbox-gl.js"></script>
     <link href="https://api.mapbox.com/mapbox-gl-js/v1.7.0/mapbox-gl.css" rel="stylesheet" />
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-    <!-- <link rel="stylesheet" href="https://api.mapbox.com/styles/v1/mapbox/streets-v11/static/-122.4241,37.78,14.25,0,60/600x600?access_token=pk.eyJ1IjoiZ2VvYm90YW5pYyIsImEiOiJjazZpZW5hNWIwMGNhM2tzMW15dTNhNTNuIn0.wF14xDyT0WT4KeGYFZBdkQ"> -->
     <style>
         body {
             margin: 0;
@@ -57,19 +56,15 @@
 
 
     <script>
-        // mapboxgl.accessToken = 'pk.eyJ1IjoiZ2VvYm90YW5pYyIsImEiOiJjazZpZWgxNG8wMDlpM2VrNWtzeDVoazlpIn0.sXTP6TH_tlMYMk8Ynt4ddw';
         mapboxgl.accessToken = 'pk.eyJ1IjoiZ2VvYm90YW5pYyIsImEiOiJjazZpZW5hNWIwMGNhM2tzMW15dTNhNTNuIn0.wF14xDyT0WT4KeGYFZBdkQ';
         var map = new mapboxgl.Map({
             container: 'map',
-            style: 'mapbox://styles/mapbox/streets-v11',
+            style: 'mapbox://styles/mapbox/satellite-v9',
             center: [63.47462, 69.89406],
             zoom: 4
-        });
-
+        })
 
         const getResource = async () => {
-            // const res = await fetch('https://5e4d1a629b6805001438f615.mockapi.io/ava/api/v1/points')
-            // const res = await fetch('https://api.myjson.com/bins/17undk')
             const res = await fetch('https://spreadsheets.google.com/feeds/cells/19zWBlt4Ck4t05HeGZRghWuHwDAUMteXl2GOWJj0aMwQ/2/public/full?alt=json')
             const body = res.json()
             return body
@@ -95,7 +90,7 @@
                         "properties": {
                             "description": `<p style='font-weight: 600; font-size: 0.9rem;'>${body[i * 10 + 10].content.$t}</p>${body[i * 10 + 11].content.$t}`,
                             "title": `${body[i * 10 + 10].content.$t}`,
-                            "icon": "theatre",
+                            "icon": "marker",
                             "photo": "",
                             "coordinates": `${body[i * 10 + 13].content.$t}`,
                             "region": "",
@@ -112,7 +107,6 @@
                     data.push(obj)
                 }
 
-                // console.log(data)
                 map.on('load', function () {
                     map.addSource('places', {
                             "type": "geojson",
@@ -122,15 +116,25 @@
                             }
                         }
                     );
+
                     // Add a layer showing the places.
                     map.addLayer({
                         'id': 'places',
-                        'type': 'symbol',
+                        'type': 'circle',
+                        // 'type': 'symbol',
                         'source': 'places',
                         'layout': {
-                            'icon-image': '{icon}-15',
-                            'icon-allow-overlap': true
+                            'visibility': 'visible'
+                        },
+                        'paint': {
+                            'circle-radius': 8,
+                            'circle-color': 'rgb(255,255,255)'
                         }
+                        // 'layout': {
+                        //     'icon-image': '{icon}-15',
+                        //     'icon-size': 2,
+                        //     'icon-allow-overlap': true
+                        // }
                     });
 
                     // When a click event occurs on a feature in the places layer, open a popup at the
