@@ -20,6 +20,7 @@ function onSubmit(e){
 	// Logger.log(responses[0].getResponse(), responses[1].getResponse(), responses[2].getResponse(), responses[3].getResponse())
 
 	handleResponse(responses)
+	// createNewPage(responses)
 }
 
 function handleResponse(responses) {
