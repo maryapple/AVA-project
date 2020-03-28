@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1></h1>
+    <h2></h2>
+    <h3></h3>
+
+    <script>
+        // var url_string = document.URL
+        var url_string = window.location.href
+        var url = new URL(url_string);
+        var name = url.searchParams.get("name");
+
+        // Вывод переданного в поиск параметра
+        let h1 = document.querySelector('h1')
+        h1.innerHTML = `${name}`
+
+        // Вывод адреса для проверки
+        let h2 = document.querySelector('h2')
+        h2.innerHTML = `${url_string}`
+
+        // Попытка вывести адрес страницы гуглосайта, тк данный код встраивается
+        // апи гуглосайта не работает => эти методы не работают 
+        // let h3 = document.querySelector('h3')
+        // h3.innerHTML = `${SitesApp.getActivePage().getUrl()}`
+    </script>
+</body>
+</html>
