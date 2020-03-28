@@ -1,0 +1,23 @@
+{
+    "timeZone": "Europe/Moscow",
+    "dependencies": {
+      "enabledAdvancedServices": [{
+        "userSymbol": "Sheets",
+        "serviceId": "sheets",
+        "version": "v4"
+      }]
+    },
+    "oauthScopes": [
+      "https://www.googleapis.com/auth/siteverification",
+      "https://www.googleapis.com/auth/siteverification.verify_only",
+      "https://www.googleapis.com/auth/spreadsheets.currentonly",
+      "https://www.googleapis.com/auth/spreadsheets",
+      "https://www.googleapis.com/auth/forms",
+      "https://sites.google.com/feeds",
+      "https://www.googleapis.com/auth/spreadsheets.readonly",
+      "https://www.googleapis.com/auth/userinfo.email",
+      "https://www.googleapis.com/auth/documents"
+    ],
+    "exceptionLogging": "STACKDRIVER",
+    "runtimeVersion": "V8"
+  }
