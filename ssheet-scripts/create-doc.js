@@ -5,6 +5,15 @@ function createDocs(name, region, authors, year, plots, photoId, dbLink) {
     const idDoc = doc.getId()
     const file = DriveApp.getFileById(idDoc)
     file.setSharing(DriveApp.Access.ANYONE, DriveApp.Permission.VIEW)
+
+    // Записываем файл в нужную папку
+	var parents = file.getParents();
+	while (parents.hasNext()) {
+		var parent = parents.next();
+		parent.removeFile(file);
+	}
+	var folderId = `1gfMyOOBAJxqxsqdaqxFyt6ga7EqyTkkY`
+	DriveApp.getFolderById(folderId).addFile(file)
     
     const body = doc.getBody()
 
@@ -46,12 +55,18 @@ function createDocs(name, region, authors, year, plots, photoId, dbLink) {
     const requestLink = body.appendParagraph("Request access")
     requestLink.setLinkUrl('https://docs.google.com/forms/d/e/1FAIpQLSfKfrgjGuLctHbeszA8AhnxUgjDAc2zdiOYFI1oG8KxE5FQ3A/viewform?usp=sf_link')
     
-    // Ссылка на скачивание
-    const downloadPara = '\rOr download if you have access: '
-    body.appendParagraph(downloadPara)
-	const lnk = handleCurrentLink(dbLink)
-    const downloadLink = body.appendParagraph("Download")
-    downloadLink.setLinkUrl(lnk)
+    if (dbLink !== '-') {
+        // Ссылка на скачивание
+        const downloadPara = '\rOr download if you have access: '
+        body.appendParagraph(downloadPara)
+        const lnk = handleCurrentLink(dbLink)
+        const downloadLink = body.appendParagraph("Download")
+        downloadLink.setLinkUrl(lnk)
+    }
+    else {
+        const downloadPara = '\rThere is no dataset to download '
+        body.appendParagraph(downloadPara)
+    }
 
     return idDoc
 }

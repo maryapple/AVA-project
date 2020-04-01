@@ -40,12 +40,3 @@ function completeIncorrectDescription() {
 		
 	}
 }
-
-// Если вместо айди ссылка то:
-function extractIdPhoto() {
-	const lastRowMap = mapSheet.getLastRow() + 1
-	for (let i = 2; i <= lastRowMap; i++) {
-		let str = mapSheet.getRange('I' + i).getValue()
-		mapSheet.getRange('I' + i).setValue(str.slice(str.indexOf('=') + 1))
-	}
-}

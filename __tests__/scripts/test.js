@@ -83,3 +83,19 @@ function ex() {
 
 // 	placesSheet.getRange('A' + lastRowMPlaces).setValue(hyperLink)
 // }
+
+
+var description = `<p>` + plots + ' plots' + `</p>`
+// Если несколько айдишников фото
+if (photoId.indexOf(',' !== -1)) {
+	let arrayOfIds = photoId.split(/[\^,]/)
+	for (let i = 0; i < arrayOfIds.length; i++) {
+		description += `<iframe src='https://drive.google.com/file/d/` + arrayOfIds[i] + `/preview' width='100%'></iframe>`
+	}
+	description += `<a href="https://sites.google.com/auditory.ru/avarus/main/` + name.replace(/\s/g, '').toLowerCase() + `">Go to page</a>`
+}
+else {
+	description = `<p>` + plots + `</p><iframe src='https://drive.google.com/file/d/` 
+	+ photoId + `/preview' width='100%'></iframe><a href="https://sites.google.com/auditory.ru/avarus/main/` + name.replace(/\s/g, '').toLowerCase() + `">Go to page</a>`
+	// description = `<p>` + plots + `</p><iframe src='https://drive.google.com/file/d/` + photoId + `/preview' width='100%'></iframe>`
+}

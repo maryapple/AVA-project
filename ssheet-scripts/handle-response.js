@@ -1,6 +1,4 @@
 var app = SpreadsheetApp
-// var initialSheet = app.getActiveSpreadsheet().getSheetByName('Answers from Form')
-// var linkSheet = app.getActiveSpreadsheet().getSheetByName("Links")
 var mapSheet = app.getActiveSpreadsheet().getSheetByName("Map")
 var form = FormApp.openById('1NfHSL2y2U1zkx-pkNH9KSYxF8KzshdOS_bqdDPm3nX4')
 
@@ -38,11 +36,8 @@ function handleResponse(responses) {
 		for (let i = 0; i < arrayOfIds.length; i++) {
 			description += `<iframe src='https://drive.google.com/file/d/` + arrayOfIds[i] + `/preview' width='100%'></iframe>`
 		}
-		// description += `<a href="https://sites.google.com/auditory.ru/avarus/main/` + name.replace(/\s/g, '').toLowerCase() + `">Go to page</a>`
 	}
 	else {
-		// description = `<p>` + plots + `</p><iframe src='https://drive.google.com/file/d/` 
-		// + photoId + `/preview' width='100%'></iframe><a href="https://sites.google.com/auditory.ru/avarus/main/` + name.replace(/\s/g, '').toLowerCase() + `">Go to page</a>`
 		description = `<p>` + plots + `</p><iframe src='https://drive.google.com/file/d/` + photoId + `/preview' width='100%'></iframe>`
 	}
 	
