@@ -3,7 +3,7 @@ const guestsSheet = app.getActiveSpreadsheet().getSheetByName("Guests")
 function createTimeDrivenTriggers() {
 	ScriptApp.newTrigger('handleDecision')
 				.timeBased()
-				.everyMinutes(1)
+				.everyHours(2)
                 .create()
 }
 
