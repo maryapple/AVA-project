@@ -24,7 +24,30 @@ function handleDecision() {
                             const linkToDB = mapSheet.getRange('J' + lineNumberMap).getValue()
                             const dbId = linkToDB.slice(linkToDB.indexOf('id=') + 3)
                             const file = DriveApp.getFileById(dbId)
-                            file.addViewer(email)
+
+                            // Если внешняя почта
+                            if (email.indexOf('@gmail') === -1) {
+                                // Проверка на то что уже создана копия
+                                const files = DriveApp.getFilesByName(name + '-sharable')
+                                let copy
+                                if (files.hasNext() === false) {
+                                    copy = file.makeCopy(name + '-sharable')
+                                }
+                                else {
+                                    copy = files.next()
+                                }
+                                const id = copy.getId()
+                                const newFile = DriveApp.getFileById(id)
+                                newFile.setSharing(DriveApp.Access.ANYONE_WITH_LINK, DriveApp.Permission.VIEW)
+                                const shLink = newFile.getDownloadUrl()
+                                const subject = 'Download DB ' + name
+                                const message = 'Here is your link: ' + shLink
+                                MailApp.sendEmail(email, subject, message)
+                            }
+                            // Google почта
+                            else {
+                                file.addViewer(email)
+                            }
                         }
                     }
                 }
@@ -34,5 +57,3 @@ function handleDecision() {
         }
     }
 }
-
-// Как долго действует триггер и что делать когда исчерпается лимит ?
