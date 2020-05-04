@@ -27,7 +27,6 @@ function handleDecision() {
 
                             // Если внешняя почта
                             if (email.indexOf('@gmail') === -1) {
-                                // Проверка на то что уже создана копия
                                 const files = DriveApp.getFilesByName(name + '-sharable')
                                 let copy
                                 if (files.hasNext() === false) {
@@ -41,7 +40,8 @@ function handleDecision() {
                                 newFile.setSharing(DriveApp.Access.ANYONE_WITH_LINK, DriveApp.Permission.VIEW)
                                 const shLink = newFile.getDownloadUrl()
                                 const subject = 'Download DB ' + name
-                                const message = 'Here is your link: ' + shLink
+                                const message = 'Here is your link: ' + shLink + 
+                                    '\nThe link from Google Doc is inactive for your mail'
                                 MailApp.sendEmail(email, subject, message)
                             }
                             // Google почта
@@ -51,7 +51,6 @@ function handleDecision() {
                         }
                     }
                 }
-                // Ставлю отметку о выполнении
                 guestsSheet.getRange(lineNumber, 6).setValue('handled')
             }
         }

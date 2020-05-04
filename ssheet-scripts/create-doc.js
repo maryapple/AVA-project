@@ -70,3 +70,11 @@ function createDocs(name, region, authors, year, plots, photoId, dbLink) {
 
     return idDoc
 }
+
+function handleCurrentLink(dbLink) {
+	if (dbLink !== '-') {
+		linkId = dbLink.slice(dbLink.indexOf('id='))
+	}
+	const downloadLink = 'https://drive.google.com/uc?export=download&' + linkId
+	return downloadLink
+}
